@@ -122,8 +122,8 @@ public class SC {
             Symbols t = stack.pop();
             Terminals dd = new Terminals().makeD();
             dd.setOperator(t);
-            dd.setLeft(d);
-            dd.setState(1);
+            dd.setRight(d);
+            dd.setState(2);
             stack.push(dd);
             return false;
         }
@@ -151,8 +151,8 @@ public class SC {
             Symbols e = stack.pop();
             Terminals ee = new Terminals.E();
             ee.setOperator(f);
-            ee.setRight(e);
-            ee.setState(2);
+            ee.setLeft(e);
+            ee.setState(1);
             stack.push(ee);
             return false;
         }
@@ -184,7 +184,7 @@ public class SC {
             ee.setMiddle(a);
             ee.setLeft(cp);
             ee.setRight(op);
-            ee.setState(3);
+            ee.setState(0);
             stack.push(ee);
             return false;
         }

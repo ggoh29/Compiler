@@ -10,6 +10,8 @@ public class Tokens extends Symbols{
         this.type = type;
     }
 
+    public float operate(float a, float b){return .0f;};
+
     public Number getNumber(){return new Number(state, 1);}
 
     public Operator getOperator(){return new Operator(state, 2);}

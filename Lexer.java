@@ -14,6 +14,10 @@ public class Lexer {
         tokenList = new ArrayList<Tokens>();
     }
 
+    public ArrayList<Tokens> getTokenList(){
+        return tokenList;
+    }
+
     public void throwException(String message) throws Exception {
         throw new Exception(message);
     }
@@ -122,7 +126,7 @@ public class Lexer {
 
     public void tokenise() throws Exception {
         Tokens token = new Tokens(0,0);
-        System.out.println(charArray);
+        System.out.println("Evaluating " +  new String(charArray));
         for (int i = 0; i < length; i ++){
             char cur = charArray[i];
             switch (token.getType()){
@@ -145,7 +149,7 @@ public class Lexer {
                         tokenList.add(token);
                         token = new Tokens(0,0);
                         if (isOperator(cur, token)){
-                            int closePara = cur == ')' || cur == '*' ? 5 : 2;
+                            int closePara = cur == ')' || cur == '!' ? 5 : 2;
                             token = token.getOperator(closePara);
                         }
                         else if (isTrig(cur, token)) {
@@ -170,7 +174,7 @@ public class Lexer {
                         token = token.getTrig();
                     }
                     else if (isOperator(cur, token)) {
-                        int closePara = cur == ')' ? 5 : 2;
+                        int closePara = cur == ')' || cur == '!' ? 5 : 2;
                         token = token.getOperator(closePara);
                     }
                     else {
@@ -222,7 +226,7 @@ public class Lexer {
                 case 5:
                     tokenList.add(token);
                     if (isOperator(cur, token)){
-                        int closePara = cur == ')' || cur == '*' ? 5 : 2;
+                        int closePara = cur == ')' || cur == '!' ? 5 : 2;
                         token = token.getOperator(closePara);
                     }
                     else if (isNumber(cur, token)){

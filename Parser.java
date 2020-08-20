@@ -66,7 +66,7 @@ public class Parser {
     public static int go(int i, int j){
         return gotoTable[i][j];
     }
-
+    // 12 * 2! - 8.3
     public Symbols parse(ArrayList<Tokens> tokenList, int length) throws Exception {
         LinkedList<Integer> stack2 = new LinkedList<Integer>();
         stack2.push(0);
