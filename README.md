@@ -1,5 +1,5 @@
 # Compiler
-For Johns summer work
+John's summer work
 
 main function is in CompilerMain
 
