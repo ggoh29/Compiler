@@ -26,6 +26,8 @@ public class Terminals extends Symbols{
 
     public Terminals  makeE(){ return new E(); }
 
+    public Terminals makeF(){return new F();}
+
     public class A extends Terminals{
         public A(){}
         public int getInt(){
@@ -61,6 +63,12 @@ public class Terminals extends Symbols{
             return 4;
         }
     }
+
+    public static class F extends Terminals{
+        public F(){}
+        public int getInt(){return 5;}
+    }
+
     public class S extends Terminals{
         public S(){}
         public int getInt(){

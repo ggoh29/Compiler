@@ -117,13 +117,10 @@ public class SC {
         @Override
         public boolean Change (LinkedList<Symbols> stack, LinkedList<Integer> stack2){
             stack2.pop();
-            stack2.pop();
-            Symbols d = stack.pop();
-            Symbols t = stack.pop();
+            Symbols e = stack.pop();
             Terminals dd = new Terminals().makeD();
-            dd.setOperator(t);
-            dd.setRight(d);
-            dd.setState(2);
+            dd.setMiddle(e);
+            dd.setState(0);
             stack.push(dd);
             return false;
         }
@@ -133,11 +130,27 @@ public class SC {
         @Override
         public boolean Change (LinkedList<Symbols> stack, LinkedList<Integer> stack2){
             stack2.pop();
-            Symbols e = stack.pop();
-            Terminals dd = new Terminals().makeD();
-            dd.setMiddle(e);
-            dd.setState(0);
+            stack2.pop();
+            Symbols d = stack.pop();
+            Symbols t = stack.pop();
+            Terminals dd = new Terminals().makeE();
+            dd.setOperator(t);
+            dd.setRight(d);
+            dd.setState(2);
             stack.push(dd);
+            return false;
+        }
+    }
+
+    public static class R9 extends SC {
+        @Override
+        public boolean Change (LinkedList<Symbols> stack, LinkedList<Integer> stack2){
+            stack2.pop();
+            Symbols f = stack.pop();
+            Terminals ee = new Terminals().makeE();
+            ee.setMiddle(f);
+            ee.setState(0);
+            stack.push(ee);
             return false;
         }
     }
@@ -149,7 +162,7 @@ public class SC {
             stack2.pop();
             Symbols f = stack.pop();
             Symbols e = stack.pop();
-            Terminals ee = new Terminals.E();
+            Terminals ee = new Terminals.F();
             ee.setOperator(f);
             ee.setLeft(e);
             ee.setState(1);
@@ -163,7 +176,7 @@ public class SC {
         public boolean Change(LinkedList<Symbols> stack, LinkedList<Integer> stack2){
             stack2.pop();
             Symbols num = stack.pop();
-            Terminals ee = new Terminals().makeE();
+            Terminals ee = new Terminals().makeF();
             ee.setMiddle(num);
             ee.setState(0);
             stack.push(ee);
@@ -180,7 +193,7 @@ public class SC {
             Symbols cp = stack.pop();
             Symbols a = stack.pop();
             Symbols op = stack.pop();
-            Terminals ee = new Terminals().makeE();
+            Terminals ee = new Terminals().makeF();
             ee.setMiddle(a);
             ee.setLeft(cp);
             ee.setRight(op);
