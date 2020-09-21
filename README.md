@@ -1,5 +1,4 @@
 # Compiler
-John's summer work
 
 main function is in CompilerMain
 
