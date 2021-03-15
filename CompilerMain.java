@@ -19,9 +19,8 @@ public class CompilerMain {
     }
 
     public static void main(String[] args) throws Exception {
-//        Scanner sc = new Scanner(System.in);
-//        String inputStr = sc.nextLine();
-        String inputStr = "1 + 1";
+        Scanner sc = new Scanner(System.in);
+        String inputStr = sc.nextLine();
         float result = pipe(inputStr.toCharArray());
         System.out.println(result);
     }

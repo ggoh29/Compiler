@@ -101,9 +101,9 @@ public class SC {
             stack2.pop();
             stack2.pop();
             stack2.pop();
-            Symbols b = stack.pop();
-            Symbols div = stack.pop();
             Symbols c = stack.pop();
+            Symbols div = stack.pop();
+            Symbols b = stack.pop();
             Terminals cc = new Terminals().makeC();
             cc.setLeft(b);
             cc.setRight(c);
@@ -135,9 +135,9 @@ public class SC {
             stack2.pop();
             stack2.pop();
             stack2.pop();
-            Symbols c = stack.pop();
-            Symbols p = stack.pop();
             Symbols d = stack.pop();
+            Symbols p = stack.pop();
+            Symbols c = stack.pop();
             Terminals cc = new Terminals().makeC();
             cc.setLeft(c);
             cc.setRight(d);
