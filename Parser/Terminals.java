@@ -1,6 +1,8 @@
-import java.util.LinkedList;
+package Parser;
 
-public class Terminals extends Symbols{
+import lexer.tokens.Symbols;
+
+public class Terminals extends Symbols {
 
     public int getInt(){
         return -1;
@@ -25,8 +27,6 @@ public class Terminals extends Symbols{
     }
 
     public Terminals  makeE(){ return new E(); }
-
-    public Terminals makeF(){return new F();}
 
     public class A extends Terminals{
         public A(){}
@@ -57,6 +57,7 @@ public class Terminals extends Symbols{
         }
     }
 
+
     public static class E extends Terminals{
         public E(){}
         public int getInt(){
@@ -64,10 +65,6 @@ public class Terminals extends Symbols{
         }
     }
 
-    public static class F extends Terminals{
-        public F(){}
-        public int getInt(){return 5;}
-    }
 
     public class S extends Terminals{
         public S(){}

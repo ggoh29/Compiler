@@ -1,3 +1,5 @@
+package lexer.tokens;
+
 public class Symbols {
 
     private Symbols left;
@@ -8,8 +10,8 @@ public class Symbols {
     private int state;
 
     public static float evaluate(Symbols t){
-        if (t instanceof Number){
-            return ((Number) t).getf();
+        if (t instanceof lexer.tokens.Number){
+            return ((lexer.tokens.Number) t).getf();
         } else {
             int state = t.getState();
             switch (state){
@@ -46,10 +48,6 @@ public class Symbols {
         this.operator = operator;
     }
 
-    public void setParent(Symbols parent) {
-        this.parent = parent;
-    }
-
     public Symbols getLeft() {
         return left;
     }
@@ -60,10 +58,6 @@ public class Symbols {
 
     public Symbols getMiddle() {
         return  middle;
-    }
-
-    public Symbols getParent() {
-        return parent;
     }
 
     public Symbols getOperator() {

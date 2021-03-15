@@ -1,7 +1,11 @@
-public class Number extends Tokens{
+package lexer.tokens;
 
-    public Number(int state, int type){
-        super(state, type);
+import lexer.tokens.Tokens;
+
+public class Number extends Tokens {
+
+    public Number(int type){
+        super(type);
     }
     public float getf(){
         String[] split = getStr().split("e|E");
