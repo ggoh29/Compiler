@@ -2,29 +2,38 @@
 
 main function is in CompilerMain
 
-At the moment only accepts floats, factorial, cos, +,-, * and (). Will try to implement division (/) at a later date. 
+The compiler is split into three parts, the lexer, the parser and the linearizer. A pipeline is used to join all 3 components.
 
-cos will treat all input as radian
+The language is defined as such
 
-Sample input: -33e-2+24.32*((5*cos 60) - -3e5 *2) + 6!
+0 S -> A
 
-output:
-Evaluating -33e-2+24.32*((5*cos 60) - -3e5 *2) + 6!
+1 A -> A + B
 
-cos60.0 = -0.9524129804151563
+2 A -> A - B
 
-5.0 * -0.95241296 = -4.762065
+3 A -> B
 
--300000.0 * 2.0 = -600000.0
+4 B -> B * C
 
--4.762065 - -600000.0 = 599995.25
+5 B -> B / C
 
-24.32 * 599995.25 = 1.4591884E7
+6 B -> C
 
--0.33 + 1.4591884E7 = 1.4591884E7
+7 C -> C ^ D
 
-6.0! = 720.0
+8 C -> D
 
-1.4591884E7 + 720.0 = 1.4592604E7
+9 D -> trig D
 
-Answer: 1.4592604E7
+0 D -> log D
+
+1 D -> E
+
+2 E -> num
+
+3 E ->( A )
+
+This compiler can do addition, subtraction, multiplication, division, power, trigonometry and logarithms.
+
+The parse table is an LALR(1) parser

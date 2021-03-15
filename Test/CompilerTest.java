@@ -94,9 +94,7 @@ public class CompilerTest {
 
         float result = Pipeline.pipe(inputStr);
 
-        System.out.println(result);
-
-        boolean roughlyEqual = roughlyEqual(result, -0.192799f);
+        boolean roughlyEqual = roughlyEqual(result, 0.871635f);
 
         assertTrue(roughlyEqual);
     }

@@ -71,7 +71,7 @@ public class Instructions {
         public void execute(LinkedList<Float> list){
             float a = list.pop();
             float b = list.pop();
-            list.push((float) Math.pow(b, a));
+            list.push((float) Math.pow(a, b));
         }
     }
     
