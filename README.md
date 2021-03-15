@@ -34,6 +34,8 @@ The language is defined as such
 
 3 E ->( A )
 
+4 E -> - E
+
 This compiler can do addition, subtraction, multiplication, division, power, trigonometry and logarithms.
 
 Lexer uses a DFA approach to toxenise.
