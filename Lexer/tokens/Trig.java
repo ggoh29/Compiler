@@ -1,11 +1,12 @@
-package lexer;
+package Lexer;
 
-import lexer.tokens.Tokens;
+import Lexer.tokens.Tokens;
 
 public class Trig extends Tokens {
 
-    public Trig(int type){
-        super(type);
+    public Trig(String str, int type){
+        super(str);
+        this.setType(type);
     }
 
     @Override

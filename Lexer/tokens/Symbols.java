@@ -1,4 +1,4 @@
-package lexer.tokens;
+package Lexer.tokens;
 
 public class Symbols {
 
@@ -6,12 +6,11 @@ public class Symbols {
     private Symbols right;
     private Symbols middle;
     private Symbols operator;
-    private Symbols parent;
     private int state;
 
     public static float evaluate(Symbols t){
-        if (t instanceof lexer.tokens.Number){
-            return ((lexer.tokens.Number) t).getf();
+        if (t instanceof Lexer.tokens.Number){
+            return ((Number) t).num;
         } else {
             int state = t.getState();
             switch (state){

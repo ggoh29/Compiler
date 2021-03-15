@@ -1,6 +1,6 @@
 package Parser;
 
-import lexer.tokens.Symbols;
+import Lexer.tokens.Symbols;
 
 import java.util.LinkedList;
 

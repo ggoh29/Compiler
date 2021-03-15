@@ -1,6 +1,6 @@
 package Parser;
 
-import lexer.tokens.Symbols;
+import Lexer.tokens.Symbols;
 
 public class Terminals extends Symbols {
 

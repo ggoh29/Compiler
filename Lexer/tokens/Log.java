@@ -1,11 +1,9 @@
-package lexer.tokens;
-
-import lexer.tokens.Tokens;
+package Lexer.tokens;
 
 public class Log extends Tokens {
 
-    public Log(int type){
-        super(type);
+    public Log(String str){
+        super(str);
     }
 
     @Override

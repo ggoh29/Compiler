@@ -1,8 +1,8 @@
 package Parser;
 
-import lexer.Operator;
-import lexer.tokens.Symbols;
-import lexer.tokens.Tokens;
+import Lexer.Operator;
+import Lexer.tokens.Symbols;
+import Lexer.tokens.Tokens;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
