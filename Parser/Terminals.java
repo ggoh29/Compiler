@@ -31,21 +31,21 @@ public class Terminals extends Symbols {
     public class A extends Terminals{
         public A(){}
         public int getInt(){
-            return 0;
+            return 1;
         }
     }
 
     public class B extends Terminals{
         public B(){}
         public int getInt(){
-            return 1;
+            return 2;
         }
     }
 
     public class C extends Terminals{
         public C(){ }
         public int getInt(){
-            return 2;
+            return 3;
         }
     }
 
@@ -53,16 +53,14 @@ public class Terminals extends Symbols {
     public class D extends Terminals{
         public D(){}
         public int getInt(){
-            return 3;
+            return 4;
         }
     }
 
 
     public static class E extends Terminals{
         public E(){}
-        public int getInt(){
-            return 4;
-        }
+        public int getInt(){ return 5; }
     }
 
 

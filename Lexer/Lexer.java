@@ -1,6 +1,7 @@
 package Lexer;
 
 import Lexer.states.LexerStates;
+import Lexer.tokens.EndToken;
 import Lexer.tokens.Tokens;
 
 import java.util.ArrayList;
@@ -23,7 +24,11 @@ public class Lexer {
         for (int i = 0; i < length; i++) {
             char cur = charArray[i];
             state.slideWindow(cur);
+            state = state.getNext();
         }
+        state.getNext().accept();
+        tokenList = state.getTokenList();
+        tokenList.add(new EndToken("$"));
         return tokenList;
 
     }

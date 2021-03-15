@@ -1,6 +1,6 @@
 package Parser;
 
-import Lexer.Operator;
+import Lexer.tokens.Operator;
 import Lexer.tokens.Symbols;
 import Lexer.tokens.Tokens;
 
@@ -10,67 +10,66 @@ import java.util.LinkedList;
 public class Parser {
 
     private static SC[][] parsetable
-            ={{new SC.S12(),new SC.S11(),new SC.S10(),new SC.Er(),new SC.Er(),new SC.Er(),new SC.Er(),new SC.Er(),new SC.Er()},
-            {new SC.Er(),new SC.Er(),new SC.Er(),new SC.Er(),new SC.S6(),new SC.Er(),new SC.Er(),new SC.Er(),new SC.R0()},
-            {new SC.Er(),new SC.Er(),new SC.Er(),new SC.R2(),new SC.R2(),new SC.S7(),new SC.Er(),new SC.Er(),new SC.R2()},
-            {new SC.Er(),new SC.Er(),new SC.Er(),new SC.R4(),new SC.R4(),new SC.R4(),new SC.Er(),new SC.Er(),new SC.R4()},
-            {new SC.Er(),new SC.Er(),new SC.Er(),new SC.R6(),new SC.R6(),new SC.R6(),new SC.S8(),new SC.Er(),new SC.R6()},
-            {new SC.Er(),new SC.Er(),new SC.Er(),new SC.R7(),new SC.R7(),new SC.R7(),new SC.R7(),new SC.Er(),new SC.R7()},
-            {new SC.S12(),new SC.S11(),new SC.S10(),new SC.Er(),new SC.Er(),new SC.Er(),new SC.Er(),new SC.Er(),new SC.Er()},
-            {new SC.S12(),new SC.S11(),new SC.S10(),new SC.Er(),new SC.Er(),new SC.Er(),new SC.Er(),new SC.Er(),new SC.Er()},
-            {new SC.S12(),new SC.S11(),new SC.S10(),new SC.Er(),new SC.Er(),new SC.Er(),new SC.Er(),new SC.Er(),new SC.Er()},
-            {new SC.Er(),new SC.Er(),new SC.Er(),new SC.R10(),new SC.R10(),new SC.R10(),new SC.R10(),new SC.R10(),new SC.R10()},
-            {new SC.S12(),new SC.S11(),new SC.S10(),new SC.Er(),new SC.Er(),new SC.Er(),new SC.Er(),new SC.Er(),new SC.Er()},
-            {new SC.S12(),new SC.S11(),new SC.S10(),new SC.Er(),new SC.Er(),new SC.Er(),new SC.Er(),new SC.Er(),new SC.Er()},
-            {new SC.Er(),new SC.Er(),new SC.Er(),new SC.R11(),new SC.R11(),new SC.R11(),new SC.R11(),new SC.R11(),new SC.R11()},
-            {new SC.Er(),new SC.Er(),new SC.Er(),new SC.R1(),new SC.R1(),new SC.S7(),new SC.Er(),new SC.Er(),new SC.R1()},
-            {new SC.Er(),new SC.Er(),new SC.Er(),new SC.R3(),new SC.R3(),new SC.R3(),new SC.Er(),new SC.Er(),new SC.R3()},
-            {new SC.Er(),new SC.Er(),new SC.Er(),new SC.R6(),new SC.R6(),new SC.R6(),new SC.S8(),new SC.Er(),new SC.R6()},
-            {new SC.Er(),new SC.Er(),new SC.Er(),new SC.S17(),new SC.S18(),new SC.Er(),new SC.Er(),new SC.Er(),new SC.Er()},
-            {new SC.Er(),new SC.Er(),new SC.Er(),new SC.R12(),new SC.R12(),new SC.R12(),new SC.R12(),new SC.R12(),new SC.R12()},
-            {new SC.S12(),new SC.S11(),new SC.S10(),new SC.Er(),new SC.Er(),new SC.Er(),new SC.Er(),new SC.Er(),new SC.Er()},
-            {new SC.Er(),new SC.Er(),new SC.Er(),new SC.R8(),new SC.R8(),new SC.R8(),new SC.R8(),new SC.Er(),new SC.R8()},
-            {new SC.Er(),new SC.Er(),new SC.Er(),new SC.R9(),new SC.R9(),new SC.R9(),new SC.R9(),new SC.S9(),new SC.R9()},
-            {new SC.Er(),new SC.Er(),new SC.Er(),new SC.R5(),new SC.R5(),new SC.R5(),new SC.Er(),new SC.Er(),new SC.R5()}};
+            ={{new SC.Err(),new SC.Err(),new SC.Err(),new SC.Err(),new SC.Err(),new SC.S09(),new SC.Err(),new SC.S05(),new SC.S06(),new SC.S08(),new SC.R00()},
+              {new SC.S10(),new SC.S11(),new SC.Err(),new SC.Err(),new SC.Err(),new SC.Err(),new SC.Err(),new SC.Err(),new SC.Err(),new SC.Err(),new SC.R00()},
+              {new SC.R03(),new SC.R03(),new SC.S12(),new SC.S13(),new SC.Err(),new SC.R03(),new SC.Err(),new SC.Err(),new SC.Err(),new SC.Err(),new SC.R03()},
+              {new SC.R06(),new SC.R06(),new SC.R06(),new SC.R06(),new SC.S14(),new SC.Err(),new SC.R06(),new SC.Err(),new SC.Err(),new SC.Err(),new SC.R06()},
+              {new SC.R08(),new SC.R08(),new SC.R08(),new SC.R08(),new SC.R08(),new SC.Err(),new SC.R08(),new SC.Err(),new SC.Err(),new SC.Err(),new SC.R08()},
+              {new SC.Err(),new SC.Err(),new SC.Err(),new SC.Err(),new SC.Err(),new SC.S09(),new SC.Err(),new SC.S05(),new SC.S06(),new SC.S08(),new SC.Err()},
+              {new SC.Err(),new SC.Err(),new SC.Err(),new SC.Err(),new SC.Err(),new SC.S09(),new SC.Err(),new SC.S05(),new SC.S06(),new SC.S08(),new SC.Err()},
+              {new SC.R11(),new SC.R11(),new SC.R11(),new SC.R11(),new SC.R11(),new SC.Err(),new SC.R11(),new SC.Err(),new SC.Err(),new SC.Err(),new SC.R11()},
+              {new SC.R12(),new SC.R12(),new SC.R12(),new SC.R12(),new SC.R12(),new SC.Err(),new SC.R12(),new SC.Err(),new SC.Err(),new SC.Err(),new SC.R12()},
+              {new SC.Err(),new SC.Err(),new SC.Err(),new SC.Err(),new SC.Err(),new SC.S09(),new SC.Err(),new SC.S05(),new SC.S06(),new SC.S08(),new SC.Err()},
+              {new SC.Err(),new SC.Err(),new SC.Err(),new SC.Err(),new SC.Err(),new SC.S09(),new SC.Err(),new SC.S05(),new SC.S06(),new SC.S08(),new SC.Err()},
+              {new SC.Err(),new SC.Err(),new SC.Err(),new SC.Err(),new SC.Err(),new SC.S09(),new SC.Err(),new SC.S05(),new SC.S06(),new SC.S08(),new SC.Err()},
+              {new SC.Err(),new SC.Err(),new SC.Err(),new SC.Err(),new SC.Err(),new SC.S09(),new SC.Err(),new SC.S05(),new SC.S06(),new SC.S08(),new SC.Err()},
+              {new SC.Err(),new SC.Err(),new SC.Err(),new SC.Err(),new SC.Err(),new SC.S09(),new SC.Err(),new SC.S05(),new SC.S06(),new SC.S08(),new SC.Err()},
+              {new SC.Err(),new SC.Err(),new SC.Err(),new SC.Err(),new SC.Err(),new SC.S09(),new SC.Err(),new SC.S05(),new SC.S06(),new SC.S08(),new SC.Err()},
+              {new SC.R09(),new SC.R09(),new SC.R09(),new SC.R09(),new SC.R09(),new SC.Err(),new SC.R09(),new SC.Err(),new SC.Err(),new SC.Err(),new SC.R09()},
+              {new SC.R10(),new SC.R10(),new SC.R10(),new SC.R10(),new SC.R10(),new SC.Err(),new SC.R10(),new SC.Err(),new SC.Err(),new SC.Err(),new SC.R10()},
+              {new SC.S10(),new SC.S11(),new SC.Err(),new SC.Err(),new SC.Err(),new SC.Err(),new SC.S23(),new SC.Err(),new SC.Err(),new SC.Err(),new SC.Err()},
+              {new SC.R01(),new SC.R01(),new SC.S12(),new SC.S13(),new SC.Err(),new SC.Err(),new SC.R01(),new SC.Err(),new SC.Err(),new SC.Err(),new SC.R01()},
+              {new SC.R02(),new SC.R02(),new SC.S12(),new SC.S13(),new SC.Err(),new SC.Err(),new SC.R02(),new SC.Err(),new SC.Err(),new SC.Err(),new SC.R02()},
+              {new SC.R04(),new SC.R04(),new SC.R04(),new SC.R04(),new SC.S14(),new SC.Err(),new SC.R04(),new SC.Err(),new SC.Err(),new SC.Err(),new SC.R04()},
+              {new SC.R05(),new SC.R05(),new SC.R05(),new SC.R05(),new SC.S14(),new SC.Err(),new SC.R05(),new SC.Err(),new SC.Err(),new SC.Err(),new SC.R05()},
+              {new SC.R07(),new SC.R07(),new SC.R07(),new SC.R07(),new SC.R07(),new SC.Err(),new SC.R07(),new SC.Err(),new SC.Err(),new SC.Err(),new SC.R07()},
+              {new SC.R13(),new SC.R13(),new SC.R13(),new SC.R13(),new SC.R13(),new SC.Err(),new SC.R13(),new SC.Err(),new SC.Err(),new SC.Err(),new SC.R13()}};
+                
+
 
     public static int[][] gotoTable
-            = {{1,2,3,4,5,20},
-            {0,0,0,0,0,0},
-            {0,0,0,0,0,0},
-            {0,0,0,0,0,0},
-            {0,0,0,0,0,0},
-            {0,0,0,0,0,0},
-            {0,13,3,4,5,20},
-            {0,0,14,4,5,20},
-            {0,0,21,15,5,20},
-            {0,0,0,0,0,0},
-            {16,2,3,4,5,20},
-            {0,0,0,0,19,20},
-            {0,0,0,0,0,0},
-            {0,0,0,0,0,0},
-            {0,0,0,0,0,0},
-            {0,0,0,0,0,0},
-            {0,0,0,0,0,0},
-            {0,0,0,0,0,0},
-            {0,13,3,4,5,20},
-            {0,0,0,0,0,0},
-            {0,0,0,0,0,0},
-            {0,0,0,0,0,0}};
+            = {{ 0, 1, 2, 3, 4, 7},
+               { 0, 0, 0, 0, 0, 0},
+               { 0, 0, 0, 0, 0, 0},
+               { 0, 0, 0, 0, 0, 0},
+               { 0, 0, 0, 0, 0, 0},
+               { 0, 0, 0, 0,15, 7},
+               { 0, 0, 0, 0,16, 7},
+               { 0, 0, 0, 0, 0, 0},
+               { 0, 0, 0, 0, 0, 0},
+               { 0,17, 2, 3, 4, 7},
+               { 0, 0,18, 3, 4, 7},
+               { 0, 0,19, 3, 4, 7},
+               { 0, 0, 0,20, 4, 7},
+               { 0, 0, 0,21, 4, 7},
+               { 0, 0, 0, 0,22, 7},
+               { 0, 0, 0, 0, 0, 0},
+               { 0, 0, 0, 0, 0, 0},
+               { 0, 0, 0, 0, 0, 0},
+               { 0, 0, 0, 0, 0, 0},
+               { 0, 0, 0, 0, 0, 0},
+               { 0, 0, 0, 0, 0, 0},
+               { 0, 0, 0, 0, 0, 0},
+               { 0, 0, 0, 0, 0, 0},
+               { 0, 0, 0, 0, 0, 0}};
 
     public static int indexing(Tokens token){
-        switch (token.getType()){
-            case 1:
-                return 0;
-            case 2:
-            case 5:
-                Operator t = (Operator) token;
-                return t.getOperatorType() + 2;
-            case 3:
-                return 1;
+        switch (token.getState()){
             case 0:
-                return 8;
+                Operator t = (Operator) token;
+                return t.getType();
         }
-        return 0;
+        return token.getState();
     }
 
     public static int go(int i, int j){

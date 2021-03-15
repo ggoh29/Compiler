@@ -4,12 +4,13 @@ import java.util.stream.IntStream;
 
 public class Operator extends Tokens {
 
-    private static char[] operatorList = {'(',')','+','-','*','/','^'};
+    private static char[] operatorList = {'+','-','*','/','^','(',')'};
 
     public Operator(String str){
         super(str);
         int j = findIndex(str);
         this.setType(j);
+        setState(0);
     }
 
     public int findIndex(String t){
@@ -25,16 +26,15 @@ public class Operator extends Tokens {
     @Override
     public float operate(float a, float b) {
         switch (this.getType()) {
-            case 2:
-                float t0 = a + b;
-                return t0;
-            case 3:
+            case 0:
+                return a + b;
+            case 1:
                 return a - b;
-            case 4:
+            case 2:
                 return a * b;
-            case 5:
+            case 3:
                 return a / b;
-            case 6:
+            case 4:
                 return (float) Math.pow(a, b);
         }
         return .0f;

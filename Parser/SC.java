@@ -152,11 +152,11 @@ public class SC {
         @Override
         public boolean Change (LinkedList<Symbols> stack, LinkedList<Integer> stack2){
             stack2.pop();
-            Symbols c = stack.pop();
-            Terminals dd = new Terminals().makeD();
-            dd.setMiddle(c);
-            dd.setState(0);
-            stack.push(dd);
+            Symbols d = stack.pop();
+            Terminals cc = new Terminals().makeC();
+            cc.setMiddle(d);
+            cc.setState(0);
+            stack.push(cc);
             return false;
         }
     }
@@ -239,10 +239,42 @@ public class SC {
         }
     }
 
-    public static class Er extends SC {
+    public static class Err extends SC {
         @Override
         public boolean Change(LinkedList<Symbols> stack, LinkedList<Integer> stack2) throws Exception {
             throw new Exception("Incorrect sequence of tokens");
+        }
+    }
+
+    public static class S05 extends SC {
+        @Override
+        public boolean Change(LinkedList<Symbols> stack, LinkedList<Integer> stack2) {
+            stack2.push(5);
+            return true;
+        }
+    }
+
+    public static class S06 extends SC {
+        @Override
+        public boolean Change(LinkedList<Symbols> stack, LinkedList<Integer> stack2) {
+            stack2.push(6);
+            return true;
+        }
+    }
+
+    public static class S08 extends SC {
+        @Override
+        public boolean Change(LinkedList<Symbols> stack, LinkedList<Integer> stack2) {
+            stack2.push(8);
+            return true;
+        }
+    }
+
+    public static class S09 extends SC {
+        @Override
+        public boolean Change(LinkedList<Symbols> stack, LinkedList<Integer> stack2) {
+            stack2.push(9);
+            return true;
         }
     }
 
@@ -278,42 +310,26 @@ public class SC {
         }
     }
 
-    public static class S7 extends SC {
+    public static class S13 extends SC {
         @Override
         public boolean Change(LinkedList<Symbols> stack, LinkedList<Integer> stack2) {
-            stack2.push(7);
+            stack2.push(13);
             return true;
         }
     }
 
-    public static class S8 extends SC {
+    public static class S14 extends SC {
         @Override
         public boolean Change(LinkedList<Symbols> stack, LinkedList<Integer> stack2) {
-            stack2.push(8);
+            stack2.push(14);
             return true;
         }
     }
 
-    public static class S9 extends SC {
+    public static class S23 extends SC {
         @Override
         public boolean Change(LinkedList<Symbols> stack, LinkedList<Integer> stack2) {
-            stack2.push(9);
-            return true;
-        }
-    }
-
-    public static class S17 extends SC {
-        @Override
-        public boolean Change(LinkedList<Symbols> stack, LinkedList<Integer> stack2) {
-            stack2.push(17);
-            return true;
-        }
-    }
-
-    public static class S18 extends SC {
-        @Override
-        public boolean Change(LinkedList<Symbols> stack, LinkedList<Integer> stack2) {
-            stack2.push(18);
+            stack2.push(23);
             return true;
         }
     }

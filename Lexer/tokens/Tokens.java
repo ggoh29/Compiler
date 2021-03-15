@@ -1,7 +1,5 @@
 package Lexer.tokens;
 
-import Lexer.Trig;
-
 public class Tokens extends Symbols {
 
     private String str;

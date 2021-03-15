@@ -7,6 +7,7 @@ public class Number extends Tokens {
     public Number(String str){
         super(str);
         num = Float.parseFloat(str);
+        this.setState(9);
     }
 
 }

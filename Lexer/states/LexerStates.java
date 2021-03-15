@@ -1,9 +1,12 @@
 package Lexer.states;
 
 import Lexer.Lexer;
+import Lexer.tokens.Log;
 import Lexer.tokens.Number;
 import Lexer.tokens.Operator;
 import Lexer.tokens.Tokens;
+import Lexer.tokens.Trig;
+
 
 import java.util.ArrayList;
 
@@ -29,6 +32,14 @@ public class LexerStates {
     }
 
     public void accept(){System.err.println("Invalid token : " + this.str);}
+
+    public ArrayList<Tokens> getTokenList(){
+        return LexerStates.tokenList;
+    }
+
+    public LexerStates getNext(){
+        return LexerStates.window[0];
+    }
 
     public static class State_1 extends LexerStates{
 
@@ -258,12 +269,20 @@ public class LexerStates {
             this.str = s;
         }
 
+        public void accept(){
+            LexerStates.tokenList.add(new Operator(this.str));
+        }
+
     }
 
     public static class State07 extends LexerStates {
         
         private State07(String s){
             this.str = s;
+        }
+
+        public void accept(){
+            LexerStates.tokenList.add(new Operator(this.str));
         }
         
     }
@@ -274,12 +293,20 @@ public class LexerStates {
             this.str = s;
         }
 
+        public void accept(){
+            LexerStates.tokenList.add(new Operator(this.str));
+        }
+
     }
 
     public static class State09 extends LexerStates {
 
         private State09(String s){
             this.str = s;
+        }
+
+        public void accept(){
+            LexerStates.tokenList.add(new Operator(this.str));
         }
 
     }
@@ -322,6 +349,10 @@ public class LexerStates {
             this.str = s;
         }
 
+        public void accept(){
+            LexerStates.tokenList.add(new Trig(this.str, 1));
+        }
+
     }
 
     public static class State13 extends LexerStates {
@@ -362,6 +393,10 @@ public class LexerStates {
             this.str = s;
         }
 
+        public void accept(){
+            LexerStates.tokenList.add(new Trig(this.str, 2));
+        }
+
     }
 
     public static class State16 extends LexerStates {
@@ -389,7 +424,7 @@ public class LexerStates {
         @Override
         public LexerStates transition(char cur) {
             switch (cur){
-                case 'i':
+                case 'n':
                     return new State18(str + cur);
             }
             return new State_1("" + cur);
@@ -400,6 +435,10 @@ public class LexerStates {
 
         private State18(String s){
             this.str = s;
+        }
+
+        public void accept(){
+            LexerStates.tokenList.add(new Trig(this.str, 0));
         }
 
     }
@@ -442,6 +481,10 @@ public class LexerStates {
             this.str = s;
         }
 
+        public void accept(){
+            LexerStates.tokenList.add(new Log(this.str));
+        }
+
     }
 
     public static class State22 extends LexerStates {
@@ -450,12 +493,20 @@ public class LexerStates {
             this.str = s;
         }
 
+        public void accept(){
+            LexerStates.tokenList.add(new Operator(this.str));
+        }
+
     }
 
     public static class State23 extends LexerStates {
 
         private State23(String s){
             this.str = s;
+        }
+
+        public void accept(){
+            LexerStates.tokenList.add(new Operator(this.str));
         }
 
     }
