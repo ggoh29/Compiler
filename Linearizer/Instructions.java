@@ -38,7 +38,7 @@ public class Instructions {
         public void execute(LinkedList<Float> list){
             float a = list.pop();
             float b = list.pop();
-            list.push(a + b);
+            list.push(b - a);
         }
     }
 
@@ -58,10 +58,10 @@ public class Instructions {
         public void execute(LinkedList<Float> list){
             float a = list.pop();
             float b = list.pop();
-            if (a == 0){
+            if (b == 0){
                 System.err.println("Division by zero error");
             }
-            list.push(b / a);
+            list.push(a / b);
         }
     }
     

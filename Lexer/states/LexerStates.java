@@ -1,13 +1,11 @@
 package Lexer.states;
 
 import Lexer.Lexer;
-import Lexer.tokens.Log;
+import Lexer.tokens.*;
 import Lexer.tokens.Number;
-import Lexer.tokens.Operator;
-import Lexer.tokens.Tokens;
-import Lexer.tokens.Trig;
 
-
+// TODO
+// Currently does not have correct implementation of subtraction with not space. "5-2" is an error.
 import java.util.ArrayList;
 
 public class LexerStates {
@@ -21,17 +19,17 @@ public class LexerStates {
         LexerStates.tokenList = tokenList;
     }
 
-    public void slideWindow(char cur){
-        LexerStates next = this.transition(cur);
+    public void slideWindow(int[] pointer, char cur){
+        LexerStates next = this.transition(pointer, cur);
         LexerStates.window[1] = LexerStates.window[0];
         LexerStates.window[0] = next;
     }
     
-    public LexerStates transition(char cur){
-        return new State_1("" + cur);
+    public LexerStates transition(int[] pointer, char cur){
+        return new State_1("");
     }
 
-    public void accept(){System.err.println("Invalid token : " + this.str);}
+    public void accept(){}
 
     public ArrayList<Tokens> getTokenList(){
         return LexerStates.tokenList;
@@ -48,11 +46,12 @@ public class LexerStates {
         }
 
         @Override
-        public LexerStates transition(char cur){
+        public LexerStates transition(int[] pointer, char cur){
+            pointer[0] -= 2;
             LexerStates prev = LexerStates.window[1];
             prev.accept();
             LexerStates.window[0] = new State00("");
-            return new State00("").transition(cur);
+            return new State00("");
         }
     }
 
@@ -63,7 +62,7 @@ public class LexerStates {
         }
 
         @Override
-        public LexerStates transition(char cur){
+        public LexerStates transition(int[] pointer, char cur){
             switch (cur){
                 case '0':
                 case '1':
@@ -114,7 +113,7 @@ public class LexerStates {
         }
 
         @Override
-        public LexerStates transition(char cur) {
+        public LexerStates transition(int[] pointer, char cur) {
             switch (cur) {
                 case '0':
                 case '1':
@@ -145,28 +144,6 @@ public class LexerStates {
             this.str = s;
         }
 
-        @Override
-        public LexerStates transition(char cur) {
-            switch (cur){
-                case '0':
-                case '1':
-                case '2':
-                case '3':
-                case '4':
-                case '5':
-                case '6':
-                case '7':
-                case '8':
-                case '9':
-                    return new State04(str + cur);
-                case '.':
-                    return new State03(str + cur);
-                case ' ':
-                    return this;
-            }
-            return new State_1("" + cur);
-        }
-
         public void accept(){
             LexerStates.tokenList.add(new Operator(this.str));
         }
@@ -179,7 +156,7 @@ public class LexerStates {
         }
 
         @Override
-        public LexerStates transition(char cur) {
+        public LexerStates transition(int[] pointer, char cur) {
             switch (cur){
                 case '0':
                 case '1':
@@ -192,10 +169,6 @@ public class LexerStates {
                 case '8':
                 case '9':
                     return new State04(str + cur);
-                case '.':
-                    return new State03(str + cur);
-                case ' ':
-                    return this;
             }
             return new State_1("" + cur);
         }
@@ -208,7 +181,7 @@ public class LexerStates {
         }
 
         @Override
-        public LexerStates transition(char cur) {
+        public LexerStates transition(int[] pointer, char cur) {
             switch (cur){
                 case '0':
                 case '1':
@@ -240,7 +213,7 @@ public class LexerStates {
         }
 
         @Override
-        public LexerStates transition(char cur) {
+        public LexerStates transition(int[] pointer, char cur) {
             switch (cur){
                 case '0':
                 case '1':
@@ -318,7 +291,7 @@ public class LexerStates {
         }
 
         @Override
-        public LexerStates transition(char cur) {
+        public LexerStates transition(int[] pointer, char cur) {
             switch (cur){
                 case 'o':
                     return new State11(str + cur);
@@ -334,7 +307,7 @@ public class LexerStates {
         }
 
         @Override
-        public LexerStates transition(char cur) {
+        public LexerStates transition(int[] pointer, char cur) {
             switch (cur){
                 case 's':
                     return new State12(str + cur);
@@ -362,7 +335,7 @@ public class LexerStates {
         }
 
         @Override
-        public LexerStates transition(char cur) {
+        public LexerStates transition(int[] pointer, char cur) {
             switch (cur){
                 case 'a':
                     return new State14(str + cur);
@@ -378,7 +351,7 @@ public class LexerStates {
         }
 
         @Override
-        public LexerStates transition(char cur) {
+        public LexerStates transition(int[] pointer, char cur) {
             switch (cur){
                 case 'n':
                     return new State15(str + cur);
@@ -406,7 +379,7 @@ public class LexerStates {
         }
 
         @Override
-        public LexerStates transition(char cur) {
+        public LexerStates transition(int[] pointer, char cur) {
             switch (cur){
                 case 'i':
                     return new State17(str + cur);
@@ -422,7 +395,7 @@ public class LexerStates {
         }
 
         @Override
-        public LexerStates transition(char cur) {
+        public LexerStates transition(int[] pointer, char cur) {
             switch (cur){
                 case 'n':
                     return new State18(str + cur);
@@ -450,7 +423,7 @@ public class LexerStates {
         }
 
         @Override
-        public LexerStates transition(char cur) {
+        public LexerStates transition(int[] pointer, char cur) {
             switch (cur){
                 case 'o':
                     return new State20(str + cur);
@@ -466,7 +439,7 @@ public class LexerStates {
         }
 
         @Override
-        public LexerStates transition(char cur) {
+        public LexerStates transition(int[] pointer, char cur) {
             switch (cur){
                 case 'g':
                     return new State21(str + cur);
@@ -510,4 +483,5 @@ public class LexerStates {
         }
 
     }
+
 }

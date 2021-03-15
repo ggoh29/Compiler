@@ -50,6 +50,7 @@ public class Linearizer {
     public float compute(){
         LinkedList <Float> stack = new LinkedList<>();
         while (! Linearizer.instructionList.isEmpty()){
+            System.out.println(stack);
             Instructions i = Linearizer.instructionList.pop();
             i.execute(stack);
         }

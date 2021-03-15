@@ -1,5 +1,6 @@
 package Parser;
 
+import Lexer.tokens.Number;
 import Lexer.tokens.Symbols;
 
 import java.util.LinkedList;
@@ -239,6 +240,24 @@ public class SC {
         }
     }
 
+    public static class R14 extends SC {
+        @Override
+        public boolean Change(LinkedList<Symbols> stack, LinkedList<Integer> stack2){
+            stack2.pop();
+            stack2.pop();
+            Symbols e = stack.pop();
+            Symbols minus = stack.pop();
+            Number t = new Number("0");
+            Terminals ee = new Terminals().makeE();
+            ee.setLeft(e);
+            ee.setRight(t);
+            ee.setState(3);
+            ee.setOperator(minus);
+            stack.push(ee);
+            return false;
+        }
+    }
+
     public static class Err extends SC {
         @Override
         public boolean Change(LinkedList<Symbols> stack, LinkedList<Integer> stack2) throws Exception {
@@ -302,14 +321,6 @@ public class SC {
         }
     }
 
-    public static class S6 extends SC {
-        @Override
-        public boolean Change(LinkedList<Symbols> stack, LinkedList<Integer> stack2) {
-            stack2.push(6);
-            return true;
-        }
-    }
-
     public static class S13 extends SC {
         @Override
         public boolean Change(LinkedList<Symbols> stack, LinkedList<Integer> stack2) {
@@ -326,10 +337,18 @@ public class SC {
         }
     }
 
-    public static class S23 extends SC {
+    public static class S15 extends SC {
         @Override
         public boolean Change(LinkedList<Symbols> stack, LinkedList<Integer> stack2) {
-            stack2.push(23);
+            stack2.push(15);
+            return true;
+        }
+    }
+
+    public static class S25 extends SC {
+        @Override
+        public boolean Change(LinkedList<Symbols> stack, LinkedList<Integer> stack2) {
+            stack2.push(25);
             return true;
         }
     }
