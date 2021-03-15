@@ -1,5 +1,7 @@
 package Lexer.tokens;
 
+import Linearizer.Instructions;
+
 public class Tokens extends Symbols {
 
     private String str;
@@ -10,7 +12,7 @@ public class Tokens extends Symbols {
         this.type = 0;
     }
 
-    public float operate(float a, float b){return .0f;}
+    public Instructions operate(){System.err.println("Tokens class should not be constructed."); return null;}
 
     public void setType(int type){this.type = type;}
 

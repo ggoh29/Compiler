@@ -1,6 +1,7 @@
 package Lexer.tokens;
 
 import Lexer.tokens.Tokens;
+import Linearizer.Instructions;
 
 public class Trig extends Tokens {
 
@@ -11,16 +12,16 @@ public class Trig extends Tokens {
     }
 
     @Override
-    public float operate(float a, float b){
+    public Instructions operate(){
         switch (this.getType()){
             case 0:
-                return (float) Math.sin(b);
+                return new Instructions.Sin();
             case 1:
-                return (float) Math.cos(b);
+                return new Instructions.Cos();
             case 2:
-                return (float) Math.tan(b);
+                return new Instructions.Tan();
         }
         System.err.println("Unsupported trig");
-        return 0;
+        return new Instructions();
     }
 }

@@ -8,25 +8,6 @@ public class Symbols {
     private Symbols operator;
     private int state;
 
-    public static float evaluate(Symbols t){
-        if (t instanceof Lexer.tokens.Number){
-            return ((Number) t).num;
-        } else {
-            int state = t.getState();
-            switch (state){
-                case 0:
-                    return evaluate(t.getMiddle());
-                case 1:
-                    return ((Tokens)t.getOperator()).operate(evaluate(t.getLeft()), 0.f);
-                case 2:
-                    return ((Tokens)t.getOperator()).operate(.0f, evaluate(t.getRight()));
-                case 3:
-                    return ((Tokens)t.getOperator()).operate(evaluate(t.getLeft()), evaluate(t.getRight()));
-            }
-        }
-        return 0.f;
-    }
-
     public void setState(int state){
         this.state = state;
     }

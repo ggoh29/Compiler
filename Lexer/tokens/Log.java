@@ -1,5 +1,7 @@
 package Lexer.tokens;
 
+import Linearizer.Instructions;
+
 public class Log extends Tokens {
 
     public Log(String str){
@@ -8,8 +10,8 @@ public class Log extends Tokens {
     }
 
     @Override
-    public float operate(float a, float b){
-        return (float) Math.log(b);
+    public Instructions operate(){
+        return new Instructions.Log();
 
     }
 }

@@ -1,3 +1,4 @@
+import Linearizer.Linearizer;
 import Parser.Parser;
 import Lexer.Lexer;
 import Lexer.tokens.Symbols;
@@ -15,12 +16,15 @@ public class CompilerMain {
         Parser ps = new Parser();
         ArrayList<Tokens> tokensList = lex.tokenise();
         Symbols s = ps.parse(tokensList, length);
-        return Symbols.evaluate(s);
+        Linearizer lin = new Linearizer(s);
+        float ans = lin.compute();
+        return ans;
     }
 
     public static void main(String[] args) throws Exception {
-        Scanner sc = new Scanner(System.in);
-        String inputStr = sc.nextLine();
+//        Scanner sc = new Scanner(System.in);
+//        String inputStr = sc.nextLine();
+        String inputStr = "5 * 4";
         float result = pipe(inputStr.toCharArray());
         System.out.println(result);
     }

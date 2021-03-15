@@ -1,5 +1,7 @@
 package Lexer.tokens;
 
+import Linearizer.Instructions;
+
 import java.util.stream.IntStream;
 
 public class Operator extends Tokens {
@@ -24,20 +26,20 @@ public class Operator extends Tokens {
     }
 
     @Override
-    public float operate(float a, float b) {
+    public Instructions operate() {
         switch (this.getType()) {
             case 0:
-                return a + b;
+                return new Instructions.Add();
             case 1:
-                return a - b;
+                return new Instructions.Sub();
             case 2:
-                return a * b;
+                return new Instructions.Mul();
             case 3:
-                return a / b;
+                return new Instructions.Div();
             case 4:
-                return (float) Math.pow(a, b);
+                return new Instructions.Pow();
         }
-        return .0f;
+        return new Instructions();
     }
 
 }
