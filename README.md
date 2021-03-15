@@ -36,4 +36,8 @@ The language is defined as such
 
 This compiler can do addition, subtraction, multiplication, division, power, trigonometry and logarithms.
 
-The parse table is an LALR(1) parser
+Lexer uses a DFA approach to toxenise.
+
+The parse table is an LALR(1) parser based on the grammar above.
+
+Linearizer is used to linearize instructions such that the fit the format of a stack based architecture.
