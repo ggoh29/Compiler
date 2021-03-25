@@ -26,3 +26,5 @@ Lexer uses a DFA approach to toxenise.
 The parse table is an LALR(1) parser based on the grammar above.
 
 Linearizer is used to linearize instructions such that the fit the format of a stack based architecture.
+
+The main is in CompilerMain.java
