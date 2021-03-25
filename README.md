@@ -6,35 +6,13 @@ The compiler is split into three parts, the lexer, the parser and the linearizer
 
 The language is defined as such
 
-0 S -> A
+S -> A
+A -> A + B | A - B | B
+B -> B * C | B / C | C
+C -> C ^ D | D
+D -> trig D | log D | E
+E -> num  | ( A ) | - E
 
-1 A -> A + B
-
-2 A -> A - B
-
-3 A -> B
-
-4 B -> B * C
-
-5 B -> B / C
-
-6 B -> C
-
-7 C -> C ^ D
-
-8 C -> D
-
-9 D -> trig D
-
-0 D -> log D
-
-1 D -> E
-
-2 E -> num
-
-3 E ->( A )
-
-4 E -> - E
 
 This compiler can do addition, subtraction, multiplication, division, power, trigonometry and logarithms.
 
