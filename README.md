@@ -7,10 +7,15 @@ The compiler is split into three parts, the lexer, the parser and the linearizer
 The language is defined as such
 
 S -> A
+
 A -> A + B | A - B | B
+
 B -> B * C | B / C | C
+
 C -> C ^ D | D
+
 D -> trig D | log D | E
+
 E -> num  | ( A ) | - E
 
 
